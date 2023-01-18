@@ -1,0 +1,88 @@
+ubuntu@ip-10-0-2-42:~$ sudo apt-get install mysql-client php-mysql apache2 libapache2-mod-php 
+ubuntu@ip-10-0-2-42:~$ sudo apt-get update
+ubuntu@ip-10-0-2-42:~$ sudo apt-get install apache2
+ubuntu@ip-10-0-2-42:~$ sudo systemctl status apache2
+ubuntu@ip-10-0-2-42:~$ git clone https://github.com/sreepathysois/phpmysql-app.git
+ubuntu@ip-10-0-2-42:~$ ls
+phpmysql-app
+ubuntu@ip-10-0-2-42:~$ cd phpmysql-app
+ubuntu@ip-10-0-2-42:~/phpmysql-app$ ls
+Jenkinsfile  docker-compose.yml          ecommerce_mysql_db_deployment.yaml  ecommerce_php_app_deployment.yaml  php
+README.md    docker-compose_updated.yml  ecommerce_mysql_db_service.yaml     ecommerce_php_app_service.yaml
+ubuntu@ip-10-0-2-42:~/phpmysql-app$ cd php
+ubuntu@ip-10-0-2-42:~/phpmysql-app/php$ ls
+online-shopping-system
+ubuntu@ip-10-0-2-42:~/phpmysql-app/php$ cd online-shopping-system
+ubuntu@ip-10-0-2-42:~/phpmysql-app/php/online-shopping-system$ ls
+Dockerfile                _config.yml  cart.php              css        fonts           img        login_form.php   payment_success.php  register_form.php
+Dockerfile_update_webapp  action.php   checkout.php          database   footer.php      index.php  logout.php       product.php          store.php
+LICENSE                   admin        checkout_process.php  db.php     header.php      js         newslettter.php  product_images
+README.md                 body.php     config.php            error.php  homeaction.php  login.php  offersmail.php   register.php
+ubuntu@ip-10-0-2-42:~/phpmysql-app/php/online-shopping-system$ cd /var/www/html
+ubuntu@ip-10-0-2-42:/var/www/html$ ls
+index.html
+ubuntu@ip-10-0-2-42:/var/www/html$ sudo rm index.html
+ubuntu@ip-10-0-2-42:/var/www/html$ sudo cp -rf /home/ubuntu/phpmysql-app/php/online-shopping-system/* .
+ubuntu@ip-10-0-2-42:/var/www/html$ ls
+Dockerfile                _config.yml  cart.php              css        fonts           img        login_form.php   payment_success.php  register_form.php
+Dockerfile_update_webapp  action.php   checkout.php          database   footer.php      index.php  logout.php       product.php          store.php
+LICENSE                   admin        checkout_process.php  db.php     header.php      js         newslettter.php  product_images
+README.md                 body.php     config.php            error.php  homeaction.php  login.php  offersmail.php   register.php
+ubuntu@ip-10-0-2-42:/var/www/html/database$ sudo apt-get install mysql
+ubuntu@ip-10-0-2-42:/var/www/html/database$ sudo apt-get update
+ubuntu@ip-10-0-2-42:/var/www/html$ cd
+ubuntu@ip-10-0-2-42:~$ sudo apt-get install mysql-client
+ubuntu@ip-10-0-2-42:~$ cd /var/www/html
+ubuntu@ip-10-0-2-42:/var/www/html$ ls
+Dockerfile                _config.yml  cart.php              css        fonts           img        login_form.php   payment_success.php  register_form.php
+Dockerfile_update_webapp  action.php   checkout.php          database   footer.php      index.php  logout.php       product.php          store.php
+LICENSE                   admin        checkout_process.php  db.php     header.php      js         newslettter.php  product_images
+README.md                 body.php     config.php            error.php  homeaction.php  login.php  offersmail.php   register.php
+ubuntu@ip-10-0-2-42:/var/www/html$ cd database
+ubuntu@ip-10-0-2-42:/var/www/html/database$ ls
+Dockerfile_db  onlineshop.sql
+ubuntu@ip-10-0-2-42:/var/www/html/database$ sudo mysql -h database-1.cgpkk75eb4sp.us-east-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ecomdatabase       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use ecomdatabase
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> source onlineshop.sql;
+mysql> show tables;
+mysql> exit
+ubuntu@ip-10-0-2-42:/var/www/html/database$ cd
+ubuntu@ip-10-0-2-42:~$ ls
+phpmysql-app
+ubuntu@ip-10-0-2-42:~$ cd /var/www/html
+ubuntu@ip-10-0-2-42:/var/www/html$ ls
+Dockerfile                _config.yml  cart.php              css        fonts           img        login_form.php   payment_success.php  register_form.php
+Dockerfile_update_webapp  action.php   checkout.php          database   footer.php      index.php  logout.php       product.php          store.php
+LICENSE                   admin        checkout_process.php  db.php     header.php      js         newslettter.php  product_images
+README.md                 body.php     config.php            error.php  homeaction.php  login.php  offersmail.php   register.php
+ubuntu@ip-10-0-2-42:/var/www/html$ sudo nano db.php
+ubuntu@ip-10-0-2-42:/var/www/html$ sudo systemctl restart apache2
