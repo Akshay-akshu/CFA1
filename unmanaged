@@ -1,0 +1,12 @@
+sudo mysql -u root -p
+create database ecomm;
+use ecomm;
+show tables;
+source onlineshop.sql;
+show tables;
+exit
+sudo mysql -u root -p
+ CREATE USER 'MSIS'@'localhost' IDENTIFIED BY 'MSIS@123'
+ GRANT ALL PRIVILEGES ON ecomm .* To 'MSIS'@'localhost';
+ ALTER USER 'msis'@'localhost' IDENTIFIED WITH mysql_native_password by 'msis@123';
+ 
